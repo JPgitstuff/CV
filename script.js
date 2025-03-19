@@ -23,8 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     window.onload = function() {
-        ContentDisp('A')
-        
+        ContentDisp('A')    
     };
 
     function ContentDisp(char) {
@@ -53,6 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 openPDFModal('AcademicPdf.pdf'); // Open the PDF modal
                  })
         };
+        if(char == 'C'){
+            Contact("Contact.html");
+        }
 
     }
 
@@ -62,16 +64,27 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById(option).addEventListener("click", () => ContentDisp(option.charAt(0)));
     });
 
-        // Load the about-me.html content into the section
-        function About(string) {
-            fetch(`${string}`)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('content').innerHTML = data;
-                })
-                .catch(error => console.error('Error loading the file:', error));
-        }
+    // Load the about-me.html content into the section
+    function About(string) {
+        fetch(`${string}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('content').innerHTML = data;
+                
+            })
+            .catch(error => console.error('Error loading the file:', error));
+    }
     
+    // Load the about-me.html content into the section
+    function Contact(string) {
+        fetch(`${string}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('content').innerHTML = data;
+                
+            })
+            .catch(error => console.error('Error loading the file:', error));
+    }
     
     //dynamically create and open the PDF modal
     function openPDFModal(pdfPath) {
@@ -116,6 +129,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     });
+
+    const targetSentence = "Your target sentence here."; // Change this sentence as needed
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    let scrambledArray = [];
+    let currentIndex = 0;
+    let interval;
+    
+    function getRandomChar() {
+      return chars[Math.floor(Math.random() * chars.length)];
+    }
+    
+    function startScramble() {
+      // Reset scrambled array and index
+      scrambledArray = Array.from({ length: targetSentence.length }, () => getRandomChar());
+      currentIndex = 0;
+    
+      // Update display immediately
+      const displayArea = document.getElementById("scrambledSentence");
+      displayArea.textContent = scrambledArray.join("");
+    
+      // Clear any existing interval before starting a new one
+      clearInterval(interval);
+    
+      // Start the animation
+      interval = setInterval(() => {
+        scrambledArray[currentIndex] = targetSentence[currentIndex]; // Solve one character at a time
+    
+        // Update the display
+        displayArea.textContent = scrambledArray.join("");
+    
+        // If all characters are placed correctly, stop the interval
+        if (currentIndex === targetSentence.length - 1) {
+          clearInterval(interval);
+        } else {
+          currentIndex++; // Move right
+        }
+      }, 40); // Adjust speed as needed
+    }
+    
+    
+    
+
+
+
+
+
+
 
 
 

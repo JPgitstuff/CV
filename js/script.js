@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-  const MIN_WIDTH_FOR_SCRAMBLE = 600;
-  const isWideEnough = window.innerWidth >= MIN_WIDTH_FOR_SCRAMBLE;
+  const MIN_WIDTH_FOR_SCRAMBLE = 500;
+  const isWideEnoughForSkills = window.innerWidth >= MIN_WIDTH_FOR_SCRAMBLE;
 
   // SPLITS THE SKILLS INTO SPANS WITH OPTIONAL SCRAMBLE
   document.querySelectorAll(".scramble-list").forEach(el => {
@@ -10,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .map((skill, index) => {
         const trimmed = skill.trim();
         const comma = (index < items.length - 1) ? ' , ' : ' ';
-        return isWideEnough
+        return isWideEnoughForSkills
           ? `<span class="scrambledSentence" data-scramble="${trimmed}"></span>${comma}`
           : `<span>${trimmed}</span>${comma}`;
       })
@@ -23,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return chars[Math.floor(Math.random() * chars.length)];
   }
 
-  // Scramble function (only used if screen is wide enough)
+  // Scramble function
   function scrambleText(element, text, callback, delay = 40) {
     let scrambledArray = Array.from({ length: text.length }, () => getRandomChar());
     let currentIndex = 0;
@@ -42,24 +41,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }, delay);
   }
 
-  // Scramble NAME on load if wide enough
+  // Scramble NAME on load (always scrambled, not affected by skills width logic)
   const nameElement = document.querySelector("#hero .scrambledSentence[data-scramble]");
-  if (isWideEnough && nameElement) {
+  if (nameElement) {
     scrambleText(nameElement, nameElement.getAttribute("data-scramble"));
   }
 
-  // ROTATING ROLES with scramble (if screen is wide enough)
+  // ROTATING ROLES (always scrambled, not affected by skills width logic)
   const roles = ["Software Engineering Student", "Web Developer", "IoT Enthusiast"];
   let currentRoleIndex = 0;
   const rolesElement = document.getElementById("roles");
 
   function scrambleAndShowRole(text, callback) {
-    if (!isWideEnough) {
-      rolesElement.textContent = text;
-      if (callback) callback();
-      return;
-    }
-
     let scrambledArray = Array.from({ length: text.length }, () => getRandomChar());
     let localIndex = 0;
     rolesElement.textContent = scrambledArray.join("");
@@ -86,12 +79,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   rotateRoles();
 
-  // Scramble SKILLS when visible (if wide enough)
+  // Scramble SKILLS when visible (only if wide enough)
   const skillsSection = document.querySelector("#skills");
   let skillsScrambled = false;
 
   function scrambleSkills() {
-    if (!isWideEnough) return;
+    if (!isWideEnoughForSkills) return;
     const skillSpans = skillsSection.querySelectorAll(".scrambledSentence[data-scramble]");
     skillSpans.forEach(span => {
       scrambleText(span, span.getAttribute("data-scramble"), null, 80);
@@ -109,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, { threshold: 0.7 });
 
-  if (skillsSection && isWideEnough) {
+  if (skillsSection && isWideEnoughForSkills) {
     observer.observe(skillsSection);
   }
 });

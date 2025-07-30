@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Memory Game</title>
+  <link rel="stylesheet" href="./mini-css/Memory_gamestyle.css">
+</head>
+<body>
+  <h1>Memory Match</h1>
+  <button class="back-btn" onclick="history.back()">Back to Previous Page</button>
+  <button id="restart">Restart Game</button>
+  <div class="game-board" id="game-board"></div>
+
+  <script>
+    const numbers = ['1', '2', '3', '4', '5', '6', '7', '8'];
+    let cardsArray = [...numbers, ...numbers]; // 8 pairs
+    let flippedCards = [];
+    let lockBoard = false;
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function createCard(number) {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.innerHTML = `
+        <div class="front"></div>
+        <div class="back">${number}</div>
+      `;
+      card.dataset.number = number;
+
+      card.addEventListener('click', () => {
+        if (lockBoard || card.classList.contains('matched') || card.classList.contains('flip')) return;
+
+        card.classList.add('flip');
+        flippedCards.push(card);
+
+        if (flippedCards.length === 2) {
+          checkForMatch();
+        }
+      });
+
+      return card;
+    }
+
+    function checkForMatch() {
+      lockBoard = true;
+      const [card1, card2] = flippedCards;
+      const isMatch = card1.dataset.number === card2.dataset.number;
+
+      if (isMatch) {
+        card1.classList.add('matched');
+        card2.classList.add('matched');
+        flippedCards = [];
+        lockBoard = false;
+      } else {
+        setTimeout(() => {
+          card1.classList.remove('flip');
+          card2.classList.remove('flip');
+          flippedCards = [];
+          lockBoard = false;
+        }, 1000);
+      }
+    }
+
+    function initGame() {
+      const board = document.getElementById('game-board');
+      board.innerHTML = '';
+      flippedCards = [];
+      lockBoard = false;
+
+      shuffle(cardsArray).forEach(number => {
+        const card = createCard(number);
+        board.appendChild(card);
+      });
+    }
+
+    document.getElementById('restart').addEventListener('click', initGame);
+    initGame();
+  </script>
+</body>
+</html>

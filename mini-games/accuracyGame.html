@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Game</title>
+  <link rel="stylesheet" href="./mini-css/accuracygame.css">
+</head>
+<body>
+  <button class="back-btn" onclick="history.back()">Back to Previous Page</button>
+
+  <!-- Mini Game Section -->
+  <section id="game" class="container" data-aos="fade-up">
+    <div class="card">
+      <h2>Mini Game: Click the Target!</h2>
+      <p>Try to score as many points as you can in 30 seconds!</p>
+      <button id="startGame" class="button">Start Game</button>
+      <p id="scoreDisplay">Score: 0</p>
+      <div id="gameArea">
+        <div id="timerBar"></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const gameArea = document.getElementById("gameArea");
+      const startButton = document.getElementById("startGame");
+      let score = 0;
+      let gameInterval, moveInterval, timerInterval;
+      let scoreDisplay = document.getElementById("scoreDisplay");
+      let timerBar = document.getElementById("timerBar");
+      const gameDuration = 30; 
+      const clickSound = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
+
+      function createTarget() {
+        const target = document.createElement("div");
+        target.classList.add("target");
+        target.style.left = Math.random() * (gameArea.clientWidth - 40) + "px";
+        target.style.top = Math.random() * (gameArea.clientHeight - 40) + "px";
+        target.addEventListener("click", () => {
+          score++;
+          scoreDisplay.textContent = "Score: " + score;
+          clickSound.currentTime = 0;
+          clickSound.play();
+          moveTarget(target);
+        });
+        gameArea.appendChild(target);
+        return target;
+      }
+
+      function moveTarget(target) {
+        //set a x and y makng a corner at the centerpoint of the ball
+        target.style.left = Math.random() * (gameArea.clientWidth - 40) + "px";
+        target.style.top = Math.random() * (gameArea.clientHeight - 40) + "px";
+      }
+
+      function startGame() {
+        score = 0;
+        scoreDisplay.textContent = "Score: 0";
+        gameArea.innerHTML = '<div id="timerBar"></div>';
+        timerBar = document.getElementById("timerBar");
+        const target = createTarget();
+
+        let timeLeft = gameDuration;
+        timerBar.style.width = "100%";
+
+        timerInterval = setInterval(() => {
+          timeLeft -= 0.1;
+          let percent = (timeLeft / gameDuration) * 100;
+          timerBar.style.width = percent + "%";
+        }, 100);
+
+        moveInterval = setInterval(() => moveTarget(target), 800); //moves every 800 miliseconds
+        gameInterval = setTimeout(() => {
+          clearInterval(moveInterval);
+          clearInterval(timerInterval);
+          alert("Time's up! Your final score: " + score);
+          gameArea.innerHTML = '<div id="timerBar"></div>';
+        }, gameDuration * 1000);
+      }
+
+      startButton.addEventListener("click", startGame);
+    });
+  </script>
+</body>
+</html>

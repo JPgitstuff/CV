@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ROTATING ROLES (always scrambled, not affected by skills width logic)
-  const roles = ["Software Engineering Student", "Web Developer", "IoT Enthusiast"];
+  const roles = ["Software Engineer", "Web Developer", "Embedded Systems Engineer (IoT)", "Machine Learning Engineer"];
   let currentRoleIndex = 0;
   const rolesElement = document.getElementById("roles");
 

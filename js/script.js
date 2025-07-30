@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const MIN_WIDTH_FOR_SCRAMBLE = 460;
+  const MIN_WIDTH_FOR_SCRAMBLE = 350;
   const isWideEnough = window.innerWidth >= MIN_WIDTH_FOR_SCRAMBLE;
 
   // SPLITS THE SKILLS INTO SPANS WITH OPTIONAL SCRAMBLE

@@ -1,0 +1,77 @@
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 10; 
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2); 
+  overflow-x: hidden;
+  transition: width 0.3s ease;
+  padding-top: 60px;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px); 
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav a {
+  padding: 15px 30px;
+  text-decoration: none;
+  font-size: 1rem; 
+  color: white;
+  display: block;
+  transition: background-color 0.3s ease;
+  gap: 8px;
+}
+
+.sidenav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-icon {
+  position: fixed;
+  top: 10px;
+  left: 5px;
+  padding: 5px;
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 4px;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu-icon:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 800px) {
+  .menu-text {
+    display: none;
+  }
+}
+
+
+.download-btn {
+  margin-top: auto;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  border-top: 1px solid #444;
+}

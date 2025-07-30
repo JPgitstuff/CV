@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jan-Paul Seaman</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" /><!--Bootstrap library-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" /> <!--Animate On Scroll library-->
+  <link rel="stylesheet" href="./css/nav.css" />
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+
+  <nav id = "nav">
+    <!-- Menu icon -->
+    <span class="menu-icon" onclick="openNav()">☰ <span class="menu-text">Options</span></span>
+
+    <!-- Side menu -->
+    <div id="Sidenav" class="sidenav">
+        <a class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#hero">Home</a>
+        <a href="#profile">Profile</a>
+        <a href="#skills">Skills</a>
+        <a href="#videos">Project Showcase</a>
+        <a href="#education">Education</a>
+        <a href="#info">Goals & Hobbies</a>
+        <a href="#contact">Contact</a>
+        
+        <a href="https://drive.google.com/file/d/1GzLgqAThxPq4MhNWJjOdGe77vtCKWbLV/view?usp=sharing" target= '_blank' class="download-btn" rel="noopener noreferrer">Download My CV</a>
+    </div>
+  </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="glass-panel">
+            <img src="./img/profile.png" alt="Jan-Paul Seaman" class="profile-photo"/>
+            <h1><span class="scrambledSentence" data-scramble="Jan-Paul Seaman">Jan-Paul Seaman</span></h1>
+            <p><span id="roles" class="scrambledSentence"></span></p>
+        </div>
+    </section>
+    <!--Scroll indicator-->
+    <div class="scroll-down" id="scrollHint">
+      <span>Scroll</span>
+      <div class="arrow"></div>
+    </div>
+    
+<div class="content">
+
+  <!-- Profile Section -->
+    <section id="profile" class="container" data-aos="fade-up" style="margin-top: 7%;">
+        <div class="card">
+            <h2>Profile</h2>
+            <p> I am a computing student at Belgium Campus ITversity with a strong foundation in software development,
+                web technologies, and IoT systems. I have experience with a diverse range of programming languages and frameworks,
+                enabling me to tackle varied technical challenges. I am passionate about creating refined, high-quality,
+                and intuitive applications that provide excellent user experiences. I thrive under pressure, manage my time effectively
+                and consistently aim to surpass expectations. Committed to continuous learning, I eagerly explore new tools, languages,
+                and innovative approaches to problem solving through hands-on projects and collaborative teamwork
+            </p>
+        </div>
+    </section>
+
+  <!-- Skills Section -->
+    <section id="skills" class="container" data-aos="fade-up">
+  <div class="card" id="Skills">
+    <h2>Skills</h2>
+      <!-- Key Technical Skills -->
+  <div class="skill-category"style="flex: 1 1 100%; padding: 1rem; box-sizing: border-box; word-wrap: break-word; white-space: normal; overflow-wrap: break-word; max-width: 100%;">
+    <h5>Key Technical Skills</h5>
+    <p>
+      <strong>Full-Stack Development:</strong> Proficient in building web applications using Node.js, Express.js, React, JSP, and Java Servlets, with dynamic UI design via Bootstrap, EJS, HTML, and CSS. <br> <br>
+      <strong>Database Design & Management:</strong> Experience with PostgreSQL, JavaDB (Derby), SQL Server, and MongoDB, including schema design, CRUD operations, and integration with Java and Node.js backends. <br> <br>
+      <strong>Object-Oriented Programming & MVC:</strong> Strong foundation in Java, C++, C#, and Python, applying OOP principles (inheritance, polymorphism, encapsulation) and MVC architecture in desktop and web applications.
+    </p>
+  </div>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h5>Coding Languages</h5>
+        <p class="scramble-list" data-items="Java, C++, Python, C#, JavaScript, HTML, CSS">Java, C++, Python, C#, JavaScript, HTML, CSS</p>     
+      </div>
+      <div class="skill-category">
+        <h5>Web Development</h5>
+        <p class="scramble-list" data-items="Node.js, Bootstrap, React, JSP, Java Servlets">"Node.js, Bootstrap, React, JSP, Java Servlets</p> 
+      </div>
+      <div class="skill-category">
+        <h5>Database</h5>
+        <p class="scramble-list" data-items="PostgreSQL, Microsoft SQL Server, MongoDB (NoSQL)">PostgreSQL, Microsoft SQL Server, MongoDB (NoSQL)</p>
+      </div>
+      <div class="skill-category">
+        <h5>Tools & Technologies</h5>
+        <p class="scramble-list" data-items="VS Code, IntelliJ IDEA, NetBeans, Visual Studio, Apache Tomcat, Git, Postman, REST APIs">VS Code, IntelliJ IDEA, NetBeans, Visual Studio, Apache Tomcat, Git, Postman, REST APIs</p>
+      </div>
+      <div class="skill-category">
+        <h5>Soft Skills</h5>
+        <p class="scramble-list" data-items="Communication, Teamwork, Leadership, Problem-solving">Communication, Teamwork, Leadership, Problem-solving</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Video Showcase Section -->
+<section id="videos" class="container" data-aos="fade-up">
+  <div class="card">
+    <h2>My Projects</h2>
+    <div class="video-grid">
+      <!-- Video 1 -->
+      <div class="video-wrapper">
+  <iframe
+    src="https://www.youtube.com/embed/j1ivFvs_D58?autoplay=1&mute=1&loop=1&playlist=j1ivFvs_D58&controls=0&modestbranding=1&showinfo=0&rel=0"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+  ></iframe>
+  <div class="video-overlay">
+  <h6>Webapp - Student Wellness Dashboard</h6>
+  <p>
+    Developed a secure student wellness web app with registration, login,
+    and personalized dashboards. Implemented form validation (email, password strength, duplicates) and user authentication using PostgreSQL.
+    Included password hashing, session management, and dynamic JSP pages for a smooth user experience.
+  </p>
+  <p><strong>Tech Stack:</strong></p>
+  <p>Java (JDK 21), Servlets, JSP, Apache Tomcat, PostgreSQL, JDBC, MVC, DAO pattern.</p>
+</div>
+</div>
+
+<div class="video-wrapper">
+  <iframe
+    src="https://www.youtube.com/embed/PpCGtQaHkag?autoplay=1&mute=1&loop=1&playlist=PpCGtQaHkag&controls=0&modestbranding=1&showinfo=0&rel=0"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+  ></iframe>
+  <div class="video-overlay">
+    <h6>Community Portal – Gaming Events</h6>
+  <p>
+    Developed a dynamic community portal to view and manage gaming events. Built with Express.js and EJS templating, featuring modular header and footer partials for consistent layouts.
+  </p>
+  <p>
+    Implemented routing to multiple pages and used npm run dev to run the app locally with automatic reload.
+  </p>
+  <p><strong>Tech Stack:</strong></p>
+  <p>Node.js, Express.js, EJS, npm scripts, modular routing, MVC structure.</p>
+  </div>
+</div>
+    </div>
+    <div class="button-container">
+  <div class="left-buttons">
+    <a href="./memorygame.html"  class="mini-game-button">Test Your Memory</a>
+    <a href="./accuracyGame.html"  class="mini-game-button">Test Your Accuracy</a>
+  </div>
+  <a href="https://github.com/JPgitstuff" target="_blank" rel="noopener noreferrer"class="button">View more on my GitHub</a>
+</div>
+  </div>
+</section>
+
+
+
+  <!-- Education Section -->
+  <section id="education" class="container" data-aos="fade-up">
+  <div class="card">
+    <h2>Education</h2>
+    <div class="education-columns">
+        <!-- University Section -->
+      <div class="university">
+        <div class="school-title">
+          <div class="logo" id="belgiumclogo">
+            <img src="./img/Belgium-Campus-Logo.png" alt="Belgium Campus ITversity" style="height: 81px; padding: 0; margin: 0; width: 85px;"><p style="color: black;"><strong>Belgium <br>Campus <br><span style="color: darkgray;">ITversity</span></strong></p>
+          </div>
+          <p><strong>Belgium Campus ITversity</strong> Bachelor of Computing (2023 - Present)</p>
+        </div>
+        <p style="padding-left: 2em;">Academic Record 2023-2024 Summary:</p>
+        <table id="academicStats">
+            <tbody>
+                <tr>
+                    <td>Total subjects:</td>
+                    <td style="padding-left: 15px;">27</td>
+                </tr>
+                <tr>
+                    <td>Subjects Passed:</td>
+                    <td style="padding-left: 15px;">27</td>
+                </tr>
+                <tr>
+                    <td>Subjects Failed:</td>
+                    <td style="padding-left: 15px;">0</td>
+                </tr>
+                <tr>
+                    <td>Distinctions:</td>
+                    <td style="padding-left: 15px;">25</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="https://drive.google.com/file/d/1WqDQfhr2HbAn66JTnlT-krEMu435g11J/view?usp=sharing" target="_blank" rel="noopener noreferrer"><br>Full Academic Record</a>
+      </div>
+
+      <!-- Highscool Section -->
+      <div class="highschool">
+        <div class="school-title">
+          <div class="logo" id="htlogo">
+            <img src="./img/Hoerskool-Tuine-Logo-2.png" alt="Hoërskool Tuine">
+          </div>
+          <p><strong>Hoërskool Tuine</strong> – National Senior Certificate (2018 - 2022)</p>
+        </div>
+        <p style="margin-left: 2em;">Subjects:</p>
+        <ul style="margin-left: 2em ;">
+          <li>Afrikaans Home Language</li>
+          <li>English First Additional Language</li>
+          <li>Mathematics</li>
+          <li>Accounting</li>
+          <li>Engineering Graphics and Design</li>
+          <li>Physical Science</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Info Section -->
+  <section id="info" class="container" data-aos="fade-up">
+  <div class="card"> 
+    <div class="hobbies-goals-columns">
+      <div class="goal-column">
+        <h2>Goal</h2>
+        <p>My goal is to build real-world solutions through hands-on development, 
+            while continually learning new technologies and growing into a well-rounded software engineer.
+        </p>
+      </div>
+      <div class="hobbies-column">
+        <h2>Hobbies</h2>
+        <ul>
+          <li><strong>Guitar</strong> - Grade 4 of 8 Trinity College London working towards Grade 5.</li>
+          <li><strong>Aquarium keeping</strong> – Passionate about planted tanks.</li>
+          <li>Experimenting with <strong>IoT devices</strong> in my free time.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Contact Section -->
+  <section id="contact" class="container" data-aos="fade-up">
+        <div class="card">
+            <h2>Contact</h2>
+            <ul class="list-unstyled">
+              <li><strong>Phone:</strong> <a href="tel:+27798999390">079-899-9390</a></li>
+              <li><strong>Email:</strong> <a href="mailto:jpseaman0001@gmail.com">jpseaman0001@gmail.com</a></li>
+              <li><strong>GitHub:</strong> <a href="https://github.com/JPgitstuff" target="_blank" rel="noopener noreferrer">github.com/JPgitstuff</a></li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> <!--Loads Bootstrap’s JavaScript bundle-->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <!--Loads the AOS JavaScript library-->
+  <script src="js/script.js"></script>
+  <script>
+  AOS.init({
+    offset: 110, //Lower value = earlier trigger.
+  });
+</script>
+</body>
+</html>

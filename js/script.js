@@ -1,16 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // SPLITS THE SKILLS
+  const MIN_WIDTH_FOR_SCRAMBLE = 460;
+  const isWideEnough = window.innerWidth >= MIN_WIDTH_FOR_SCRAMBLE;
+
+  // SPLITS THE SKILLS INTO SPANS WITH OPTIONAL SCRAMBLE
   document.querySelectorAll(".scramble-list").forEach(el => {
-  const items = el.getAttribute("data-items").split(",");
-  el.innerHTML = items
-    .map((skill, index) => {
-      const trimmed = skill.trim();
-      const comma = (index < items.length - 1) ? ' , ' : ' ';
-      return `<span class="scrambledSentence" data-scramble="${trimmed}"></span>${comma}`;
-    })
-    .join("");
-});
+    const items = el.getAttribute("data-items").split(",");
+    el.innerHTML = items
+      .map((skill, index) => {
+        const trimmed = skill.trim();
+        const comma = (index < items.length - 1) ? ' , ' : ' ';
+        return isWideEnough
+          ? `<span class="scrambledSentence" data-scramble="${trimmed}"></span>${comma}`
+          : `<span>${trimmed}</span>${comma}`;
+      })
+      .join("");
+  });
 
   // Utility to generate random characters
   function getRandomChar() {
@@ -18,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return chars[Math.floor(Math.random() * chars.length)];
   }
 
-  // Scramble function with adjustable delay
+  // Scramble function (only used if screen is wide enough)
   function scrambleText(element, text, callback, delay = 40) {
     let scrambledArray = Array.from({ length: text.length }, () => getRandomChar());
     let currentIndex = 0;
@@ -37,18 +42,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }, delay);
   }
 
-  // Scramble NAME on load 
+  // Scramble NAME on load if wide enough
   const nameElement = document.querySelector("#hero .scrambledSentence[data-scramble]");
-  if (nameElement) {
+  if (isWideEnough && nameElement) {
     scrambleText(nameElement, nameElement.getAttribute("data-scramble"));
   }
 
-
+  // ROTATING ROLES with scramble (if screen is wide enough)
   const roles = ["Software Engineering Student", "Web Developer", "IoT Enthusiast"];
   let currentRoleIndex = 0;
   const rolesElement = document.getElementById("roles");
 
   function scrambleAndShowRole(text, callback) {
+    if (!isWideEnough) {
+      rolesElement.textContent = text;
+      if (callback) callback();
+      return;
+    }
+
     let scrambledArray = Array.from({ length: text.length }, () => getRandomChar());
     let localIndex = 0;
     rolesElement.textContent = scrambledArray.join("");
@@ -72,32 +83,37 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(rotateRoles, 2000);
     });
   }
+
   rotateRoles();
 
-  // Scramble SKILLS when visible
+  // Scramble SKILLS when visible (if wide enough)
   const skillsSection = document.querySelector("#skills");
   let skillsScrambled = false;
 
   function scrambleSkills() {
+    if (!isWideEnough) return;
     const skillSpans = skillsSection.querySelectorAll(".scrambledSentence[data-scramble]");
     skillSpans.forEach(span => {
       scrambleText(span, span.getAttribute("data-scramble"), null, 80);
     });
   }
 
-  // Intersection Observer to detect when skills is in view
+  // Intersection Observer to detect when #skills is in view
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !skillsScrambled) {
         skillsScrambled = true;
         scrambleSkills();
-        observer.disconnect(); // Stop observing once triggered
+        observer.disconnect(); // Stop observing once scrambled
       }
     });
   }, { threshold: 0.7 });
 
-  if (skillsSection) observer.observe(skillsSection);
+  if (skillsSection && isWideEnough) {
+    observer.observe(skillsSection);
+  }
 });
+
 
 
 
